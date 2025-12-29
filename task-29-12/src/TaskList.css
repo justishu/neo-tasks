@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.task-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.write-task{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    height: 40px;
+  width: 300px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+button {
+    margin-bottom: auto;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    font-family: sans-serif;
+    color: white;
+  background-color: black;  
+  padding: 8px;
+  
+}
+
+button:hover {
+  opacity: 0.70;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0px
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  
+  text-align: center;
+  gap: 1px;
+  margin-top: 1px;
+  row-gap: 0px;
+}
+.task-checkbox {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-align: center;
+}
+.task-checkbox:hover {
+  transform: scale(1.2);
+}
