@@ -1,0 +1,20 @@
+.btn {
+  background-color: #c8bebe;
+  font-size: 24px;
+  padding: 10px 18px;
+  display: flex;
+  border: none;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+}
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.btnbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
