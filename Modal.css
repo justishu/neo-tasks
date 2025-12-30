@@ -1,0 +1,35 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalbox {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+}
+
+.modalbox img{
+  width: 100%;  
+  height: 100%;      
+  max-height: 400px;  
+  object-fit: contain;
+  display: block;
+}
+
+.close{
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: red;
+  font-size: 10px;
+  color: white;
+}
