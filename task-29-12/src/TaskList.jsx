@@ -5,7 +5,6 @@ function TaskList() {
   const [write, setWrite] = useState("");
   const [tasks, setTasks] = useState([]);
   const addTask = (e) => {
-    
     setTasks([...tasks, write]);
     console.log(tasks);
 
