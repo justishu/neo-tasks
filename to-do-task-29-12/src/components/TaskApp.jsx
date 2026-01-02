@@ -2,26 +2,28 @@ import { useState } from "react";
 import TaskInput from "./TaskInput";
 import TaskList from "./TaskList";
 
-function TaskApp(){
-  const [tasks,setTasks]=useState([]);
+function TaskApp() {
+  const [tasks, setTasks] = useState([]);
 
-  const addTask=(write)=>{
-    if(write===""){
+  const addTask = (write) => {
+    if (write === "") {
       return;
     }
-    setTasks([...tasks, 
-      {task : write,
-        completed: false }
-      ]
+    setTasks([...tasks,
+    {
+      task: write,
+      completed: false
+    }
+    ]
     );
   }
 
-  const toggleTask=(index)=>{
-    let newTask=[];
-    for(let i=0;i<tasks.length;i++){
-      if(i===index){
+  const toggleTask = (index) => {
+    let newTask = [];
+    for (let i = 0; i < tasks.length; i++) {
+      if (i === index) {
         newTask.push({
-          task:tasks[i].task,
+          task: tasks[i].task,
           completed: !tasks[i].completed
         });
       } else {
@@ -32,10 +34,10 @@ function TaskApp(){
   }
 
 
-  const delTask=(index)=>{
-    let newTasks=[];
-    for(let i=0;i<tasks.length;i++){
-      if(i!==index){
+  const delTask = (index) => {
+    let newTasks = [];
+    for (let i = 0; i < tasks.length; i++) {
+      if (i !== index) {
         newTasks.push(tasks[i]);
       }
     }
@@ -46,27 +48,27 @@ function TaskApp(){
   return (
     <div
       style={{
+        minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
-        marginTop: "40px",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <div style={{
-        
-        width: "300px",
-        
-        justifyContent: "center",
-        alignItems: "center",}}>
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        alignItems: "center"
+      }}>
 
-          <h3>To Do List</h3>
+        <h3>To Do List</h3>
 
-          <TaskInput addWritten={addTask} />
+        <TaskInput addWritten={addTask} />
 
-          <TaskList
-            tasks={tasks}
-            Toggle={toggleTask}
-            Delete={delTask}/>
+        <TaskList
+          tasks={tasks}
+          Toggle={toggleTask}
+          Delete={delTask} />
       </div>
     </div>
   );

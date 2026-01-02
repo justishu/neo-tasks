@@ -1,8 +1,12 @@
 import TaskItem from "./TaskItem";
-function TaskList({tasks,Toggle,Delete }) {
+function TaskList({ tasks, Toggle, Delete }) {
   return (
-    <div>
-      {tasks.map((task,index) => (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    }}>
+      {tasks.map((task, index) => (
         <TaskItem
           key={index}
           task={task}
