@@ -1,52 +1,17 @@
-function Mode({ flicker, onSelect }) {
-
-  let focusOpacity = 1;
-  let breakOpacity = 1;
-
-  if (flicker === "focus") {
-    focusOpacity = 0.4;
-  }
-
-  if (flicker === "break") {
-    breakOpacity = 0.4;
-  }
-
+function Mode({ currentMode, flicker, flickerColor, onSelect }) {
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginBottom: "10px"
-    }}>
-      <button
-        style={{
-          fontWeight: "bold",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          opacity: focusOpacity
-        }}
-        onClick={() => onSelect("focus")}
-      >
-        FOCUS
-      </button>
+    <div style={{ marginBottom:"15px"}}>
+      <button onClick={() => onSelect("focus")} style={{...modeStyle, color: flicker==="focus"? flickerColor:"black"}}>FOCUS</button>
 
       <span> | </span>
 
-      <button
-        style={{
-          fontWeight: "bold",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          opacity: breakOpacity
-        }}
-        onClick={() => onSelect("break")}
-      >
-        BREAK
-      </button>
+      <button onClick={() => onSelect("break")} style={{...modeStyle, color: flicker==="break"? flickerColor:"black"}}>BREAK</button>
     </div>
   );
 }
-
+const modeStyle={
+          background:"none",
+          border:"none",
+          fontWeight:"bold",
+        };
 export default Mode;

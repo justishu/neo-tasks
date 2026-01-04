@@ -1,79 +1,110 @@
-import { useEffect, useState } from "react";
+import {useEffect,useState} from "react";
 import Timer from "./components/Timer";
 import Controls from "./components/Controls";
 import Mode from "./components/Mode";
 
-function App() {
-  const FOCUS_TIME = 25 * 60;
-  const REST_TIME = 5 * 60;
+function App(){
+  const focusTime=25*60;
+  const breakTime=5*60;
 
-  const [time, setTime] = useState(FOCUS_TIME);
-  const [mode, setMode] = useState("focus");
-  const [running, setRunning] = useState(false);
-  const [flicker, setFlicker] = useState(null);
+  const [time,setTime]=useState(focusTime);
+  const [mode,setMode]=useState("focus");
+  const [running,setRunning]=useState(false);
+
+  const [flicker,setFlicker]=useState(null);
+  const [flickerColor, setFlickerColor] = useState("black");
 
   useEffect(() => {
-    let interval;
-
-    if (running && time > 0) {
-      interval = setInterval(() => {
-        setTime(prev => prev - 1);
-      }, 1000);
+    if (!running){
+      return;
     }
-
     if (time === 0) {
       setRunning(false);
-
-      if (mode === "focus") {
-        alert("Break time!");
-        setMode("rest");
-        setTime(REST_TIME);
-        setFlicker("rest");
-      } else {
-        alert("Focus time!");
+      if (mode === "focus"){
+        setMode("break");
+        setTime(breakTime);
+        setFlicker("break");
+      }else{
         setMode("focus");
-        setTime(FOCUS_TIME);
+        setTime(focusTime);
         setFlicker("focus");
       }
+      return;
     }
 
+    const interval=setInterval(() => {
+      setTime(prev=>prev-1);
+    }, 1000);
+
     return () => clearInterval(interval);
-  }, [running, time, mode]);
+  },[running, time, mode, focusTime, breakTime]);
 
-  
+  useEffect(()=>{
+    if (!flicker){
+      return;
+    }
 
-  
+    const colors =["green","red","blue"];
+    let index = 0;
 
-  
+    const flickerTimer = setInterval(()=> {
+      setFlickerColor(colors[index % colors.length]);
+      index++;
+    },300);
 
-  function changeMode(newMode) {
+    return()=>{
+      clearInterval(flickerTimer);
+      setFlickerColor("black");
+    };
+  }, [flicker]);
+
+  const start = () => {
+    setRunning(true);
+  };
+
+  const stop = () => {
+    setRunning(false);
+  };
+
+  const reset = () => {
+    setRunning(false);
+    setTime(mode === "focus" ? focusTime : breakTime);
+    setFlicker(null);
+  };
+
+  const changeMode = (newMode) => {
     setRunning(false);
     setMode(newMode);
-    setTime(newMode === "focus" ? FOCUS_TIME : REST_TIME);
+    setTime(newMode === "focus" ? focusTime : breakTime);
     setFlicker(null);
-  }
+  };
 
   return (
-    <div style={appStyle}>
-      <h1>Pomodoro Timer</h1>
+    <div style={outerboxStyle}>
+      <div style={innerboxStyle}>
+        <Timer time={time} />
 
-      <Timer time={time} />
+        <Mode currentMode={mode} flicker={flicker} flickerColor={flickerColor} onSelect={changeMode} />
 
-      <Mode
-        currentMode={mode}
-        flicker={flicker}
-        onSelect={changeMode}
-      />
-
-      <Controls onStart={start} onStop={stop} onReset={reset} />
+        <Controls Start={start} Stop={stop} Reset={reset} />
+      </div>
     </div>
   );
 }
 
-const appStyle = {
+const outerboxStyle = {
+  position: "fixed",
+  inset: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const innerboxStyle = {
+  border: "2px solid gray",
+  padding: "20px",
+  borderRadius: "8px",
   textAlign: "center",
-  padding: "40px",
-  fontFamily: "Arial"
 };
 
 export default App;

@@ -1,14 +1,10 @@
-function Timer({ time }) {
-  let min = Math.floor(time / 60);
-  let sec = time % 60;
+function Timer({time}) {
+  const min=Math.floor(time/60);
+  const sec=time%60;
 
-  if (sec < 10) {
-    sec = "0" + sec;
-  }
-
-  return (
-    <h2 style={{ fontSize: "48px", margin: "20px 0", fontFamily: "monospace" }}>
-      {min}:{sec}
+  return(
+    <h2 style={{fontSize:"48px",margin:"20px 0",fontFamily:"monospace"}}>
+      {min}:{sec<10?("0"+sec):sec}
     </h2>
   );
 }
