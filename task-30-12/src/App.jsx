@@ -101,9 +101,15 @@ const outerboxStyle = {
 };
 
 const innerboxStyle = {
+  alignItems: "center",
+  justifyContent: "center",
+  display: "flex",
+  flexDirection: "column",
+  borderRadius:"50%",
+  height:"350px",
+  width:"350px",
   border: "2px solid gray",
   padding: "20px",
-  borderRadius: "8px",
   textAlign: "center",
 };
 
